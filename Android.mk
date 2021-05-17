@@ -20,7 +20,9 @@ LOCAL_C_INCLUDES += \
     system/media/audio_utils/include \
     external/expat/lib \
     vendor/qcom/opensource/core-utils/fwk-detect \
-    vendor/qcom/opensource/pal
+    vendor/qcom/opensource/pal \
+    vendor/qcom/opensource/audio-hal/primary-hal/hal/audio_extn \
+    vendor/qcom/opensource/audio-hal/primary-hal/hal
 
 LOCAL_SRC_FILES := \
     SoundTriggerDevice.cpp \
@@ -41,6 +43,16 @@ LOCAL_SHARED_LIBRARIES := \
     libprocessgroup \
     libutils \
     libar-pal
+
+ifeq ($(strip $(AUDIO_FEATURE_ENABLED_LSM_HIDL)),true)
+    LOCAL_HEADER_LIBRARIES += liblisten_headers
+
+    LOCAL_SHARED_LIBRARIES += \
+        vendor.qti.hardware.ListenSoundModel@1.0-impl \
+        vendor.qti.hardware.ListenSoundModel@1.0
+
+    LOCAL_CFLAGS += -DLSM_HIDL_ENABLED
+endif
 
 include $(BUILD_SHARED_LIBRARY)
 endif #TARGET_USES_QCOM_MM_AUDIO
