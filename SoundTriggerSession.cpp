@@ -489,7 +489,6 @@ int SoundTriggerSession::UnloadSoundModel()
 
     state_ = IDLE;
 
-exit:
     ALOGV("%s: Exit, status = %d", __func__, status);
 
     return status;
