@@ -21,7 +21,6 @@ LOCAL_C_INCLUDES += \
     system/media/audio_utils/include \
     external/expat/lib \
     vendor/qcom/opensource/core-utils/fwk-detect \
-    vendor/qcom/opensource/pal \
     $(call project-path-for,qcom-audio)/hal/audio_extn \
     $(call project-path-for,qcom-audio)/hal
 
@@ -31,7 +30,8 @@ LOCAL_SRC_FILES := \
 
 LOCAL_HEADER_LIBRARIES := \
     libhardware_headers \
-    libsystem_headers
+    libsystem_headers \
+    libpal_headers
 
 LOCAL_SHARED_LIBRARIES := \
     libbase \
